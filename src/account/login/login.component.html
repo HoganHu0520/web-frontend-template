@@ -1,0 +1,32 @@
+<div class="login-area" id="LoginArea" [@routerTransition]>
+    <div class="body">
+        <form #loginForm="ngForm" id="LoginForm" method="post" novalidate (ngSubmit)="login()">
+            <h1 class="login-title">{{"Log In"}}</h1>
+
+            <mat-form-field class="full-width user-input">
+                <input type="email" matInput placeholder="{{'Email Address'}}"
+                    name="userNameOrEmailAddress"
+                    [formControl]="emailFormControl"
+                    [(ngModel)]="loginService.loginRequestModel.userName">
+                <mat-error *ngIf="emailFormControl.hasError('pattern')">
+                    Please enter the correct email address.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width user-input">
+                <input type="password" matInput placeholder="{{'Password'}}"
+                    name="password"
+                    [formControl]="passwordFormControl"
+                    [(ngModel)]="loginService.loginRequestModel.password">
+            </mat-form-field>
+
+            <div class="row">
+                <div>
+                    <button class="login-button" mat-raised-button color="accent"
+                        [disabled]="!loginService.loginRequestModel.userName || !loginService.loginRequestModel.password"
+                        type="submit">{{"Confirm"}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

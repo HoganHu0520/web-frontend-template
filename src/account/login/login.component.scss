@@ -1,0 +1,21 @@
+.login-area {
+    background: rgba(#FFF,.8);
+    padding: 20px;
+
+    .login-button:not([disabled]) {
+        background-color: rgba(#4caf50, .7)
+    }
+
+    form > * {
+        width: 100%;
+    }
+
+    form h1 {
+        text-align: center;
+    }
+}
+
+.login-button {
+    width: 100%;
+    height: 50px;
+}

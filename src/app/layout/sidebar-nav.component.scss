@@ -1,0 +1,21 @@
+.menu .list li.active {
+    background-color: #005d93;
+    position: relative;
+
+    &:after {
+        content: ' ';
+        border: transparent solid 10px;
+        border-right-color: white;
+        height: 20px;
+        width: 20px;
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        margin-top: -10px;
+    }
+
+    &>:first-child span {
+        color: white;
+    }
+}

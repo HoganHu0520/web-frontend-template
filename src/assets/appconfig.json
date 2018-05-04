@@ -1,0 +1,4 @@
+{
+  "remoteServiceBaseUrl": "http://dev-api-public-710536427.ap-southeast-1.elb.amazonaws.com",
+  "appBaseUrl": "http://localhost:4200"
+}
