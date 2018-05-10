@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 export const accountModule = './account/account.module#AccountModule';
 export const appModule = './app/app.module#AppModule';
+export const profileModule = './profile/profile.module#ProfileModule';
 
 const routes: Routes = [
     { path: '', redirectTo: '/app/home', pathMatch: 'full' },
@@ -15,7 +16,11 @@ const routes: Routes = [
         path: 'app',
         loadChildren: appModule, //Lazy load account module
         data: { preload: true }
-    }
+    },
+    {
+        path: 'profile',
+        loadChildren: profileModule,
+    },
 ];
 
 @NgModule({

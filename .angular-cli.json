@@ -21,6 +21,7 @@
       "prefix": "app",
       "styles": [
         "../node_modules/bootstrap/scss/bootstrap-reboot.scss",
+        "../node_modules/bootstrap/scss/bootstrap-grid.scss",        
         "../node_modules/material-design-icons/iconfont/material-icons.css",
         "./shared/styles/global.scss"
       ],
