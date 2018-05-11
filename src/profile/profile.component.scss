@@ -165,6 +165,8 @@
 
         .info-container {
             position: relative;
+            padding: 10px 0;
+
             &:first-child {
                 border-top: rgba(224, 224, 224, 0.75) solid 1px;
                 padding-top: 4em;
@@ -194,6 +196,33 @@
                     position: absolute;
                     width: 100%;
                     bottom: 10px;
+                }
+            }
+
+            .middle-border {
+                position: absolute;
+                left: 50%;
+                width: 1px;
+                background-color: currentColor;
+                top: 10px;
+                height: calc(100% - 10px);
+
+                .point {
+                    position: absolute;
+                    border-radius: 50%;
+                    box-shadow: 0 0 3px currentColor;
+                    left: -4px;
+                    height: 8px;
+                    width: 8px;
+                    background-color: currentColor;
+                    animation: pointMove 4s ease-in-out infinite;
+
+                    @keyframes pointMove
+                    {
+                        0% { top: 0px; }
+                        50% { top: 100%; }
+                        100% { top: 0px; }
+                    }
                 }
             }
         }
