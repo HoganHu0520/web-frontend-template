@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-import * as ApiServiceProxies from './service-proxies';
+import { Client } from './service-proxies';
 
 @NgModule({
+    imports: [
+        HttpClientModule,
+    ],
     providers: [
-        ApiServiceProxies.SessionServiceProxy,
-        ApiServiceProxies.UsersServiceProxy,
-        ApiServiceProxies.ProjectManageServiceProxy,
-        ApiServiceProxies.QrCodeServiceProxy,
-        ApiServiceProxies.PartnerServiceProxy,
-        ApiServiceProxies.DefectCategoryServiceProxy,
-        ApiServiceProxies.HelpdeskServiceProxy,
+        HttpClient,
+        Client,
+    ],
+    exports: [
     ]
 })
 export class ServiceProxyModule { }

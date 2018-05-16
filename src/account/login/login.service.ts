@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
-import { UsersServiceProxy, LoginRequestModel, TokenResponse } from '@shared/service-proxies/service-proxies';
+import { finalize } from 'rxjs/operators';
+
+import { Client, LoginRequestModel, TokenResponse } from '@shared/service-proxies/service-proxies';
 import { UrlHelper } from '@shared/helpers/UrlHelper';
 import { AppConsts } from '@shared/AppConsts';
 
@@ -17,7 +19,7 @@ export class LoginService {
     rememberMe: boolean;
 
     constructor(
-        private _userServiceProxy: UsersServiceProxy,
+        private _userServiceProxy: Client,
         private _router: Router,
         private _tokenService: TokenService,
         private _cookieService: CookieService,
@@ -32,7 +34,7 @@ export class LoginService {
         this.loginRequestModel.isLoginAdmin = true;
 
         this._userServiceProxy
-            .login(this.loginRequestModel)
+            .usersLoginPost(this.loginRequestModel)
             .finally(() => {
                 finallyCallback;
             })

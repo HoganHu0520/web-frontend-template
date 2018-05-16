@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
 import { MatInputModule, MatFormFieldModule, MatIconModule, MatButtonModule } from '@angular/material';
 
 import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
@@ -23,8 +22,6 @@ const modules = [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpModule,
-        JsonpModule,
         ...modules,
         AccountRoutingModule,
         ServiceProxyModule,

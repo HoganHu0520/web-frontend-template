@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
 import {
     MatFormFieldModule, MatInputModule, MatAutocompleteModule, MatOptionModule,
     MatSelectModule, MatChipsModule, MatIconModule, MatButtonModule
@@ -34,8 +33,6 @@ const MaterialModules = [
     imports: [
         CommonModule,
         FormsModule,
-        HttpModule,
-        JsonpModule,
         ModalModule.forRoot(),
         AppRoutingModule,
         ServiceProxyModule,

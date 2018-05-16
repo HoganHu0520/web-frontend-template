@@ -1,25 +1,21 @@
 ﻿import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-export const accountModule = './account/account.module#AccountModule';
-export const appModule = './app/app.module#AppModule';
-export const profileModule = './profile/profile.module#ProfileModule';
-
 const routes: Routes = [
     { path: '', redirectTo: '/app/home', pathMatch: 'full' },
     {
         path: 'account',
-        loadChildren: accountModule, //Lazy load account module
+        loadChildren: './account/account.module#AccountModule', //Lazy load account module
         data: { preload: true }
     },
     {
         path: 'app',
-        loadChildren: appModule, //Lazy load account module
+        loadChildren: './app/app.module#AppModule', //Lazy load account module
         data: { preload: true }
     },
     {
         path: 'profile',
-        loadChildren: profileModule,
+        loadChildren: './profile/profile.module#ProfileModule',
     },
 ];
 
