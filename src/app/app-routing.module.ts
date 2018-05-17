@@ -9,6 +9,10 @@ import { AppComponent } from './app.component';
                 path: '',
                 component: AppComponent,
                 children: [
+                    {
+                        path: 'article',
+                        loadChildren: './article/article.module#ArticleModule',
+                    }
                 ],
             }
         ])

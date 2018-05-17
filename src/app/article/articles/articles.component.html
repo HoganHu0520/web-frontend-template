@@ -1,0 +1,15 @@
+<mat-sidenav-container [hasBackdrop]="'false'">
+  <mat-sidenav [mode]="'push'" [(opened)]="openedSidenav">
+    <li class="nav-item" *ngFor="let article of articleService.articles">
+      <a [routerLink]="['/article', article.id]" >{{article.title}}</a>      
+    </li>
+  </mat-sidenav>
+
+  <mat-sidenav-content [ngClass]="{'hide-sidenav': !openedSidenav}">
+    <div class="content-header">
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon aria-label="menu">menu</mat-icon>
+      </button>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -86,6 +86,16 @@ export class Client {
         }
         return Observable.of<TokenResponse>(<any>null);
     }
+
+    articleList(): Observable<ArticleModel[]> {
+        return Observable.fromPromise(Promise.resolve([
+            new ArticleModel({
+                id: 1,
+                title: 'test',
+                mdFile: '/assets/mds/test.md',
+            })
+        ]));
+    }
 }
 
 export class LoginRequestModel implements ILoginRequestModel {
@@ -130,6 +140,50 @@ export interface ILoginRequestModel {
     userName?: string | undefined;
     password?: string | undefined;
     isLoginAdmin?: boolean | undefined;
+}
+
+export class ArticleModel implements IArticleModel {
+    title?: string | undefined;
+    mdFile?: string | undefined;
+    id?: number | undefined;
+
+    constructor(data?: IArticleModel) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.title = data["title"];
+            this.mdFile = data["mdFile"];
+            this.id = data["id"];
+        }
+    }
+
+    static fromJS(data: any): ArticleModel {
+        data = typeof data === 'object' ? data : {};
+        let result = new ArticleModel();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["title"] = this.title;
+        data["mdFile"] = this.mdFile;
+        data["id"] = this.id;
+        return data; 
+    }
+}
+
+export interface IArticleModel {
+    title?: string | undefined;
+    mdFile?: string | undefined;
+    id?: number | undefined;
 }
 
 export class TokenResponse implements ITokenResponse {

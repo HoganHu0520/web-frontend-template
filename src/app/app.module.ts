@@ -3,16 +3,17 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
     MatFormFieldModule, MatInputModule, MatAutocompleteModule, MatOptionModule,
-    MatSelectModule, MatChipsModule, MatIconModule, MatButtonModule
+    MatSelectModule, MatChipsModule, MatIconModule, MatButtonModule, MatSidenavModule,
+    MatToolbarModule,
 } from '@angular/material';
 
 import { ModalModule } from 'ngx-bootstrap';
 
+import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SideBarNavComponent } from './layout/sidebar-nav.component';
-
-import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
 
 const MaterialModules = [
     MatFormFieldModule,
@@ -23,6 +24,8 @@ const MaterialModules = [
     MatChipsModule,
     MatIconModule,
     MatButtonModule,
+    MatSidenavModule,
+    MatToolbarModule,
 ];
 
 @NgModule({

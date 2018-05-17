@@ -1,10 +1,19 @@
-﻿<div class="overlay"></div>
+﻿<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <a class="logo-link" href="/">
+            <img src="/assets/img/logo.png" alt="" srcset="">
+        </a>
+        <a [routerLink]="'/app/article'" class="nav-link">
+            博文
+        </a>
+    </mat-toolbar-row>
+</mat-toolbar>
 
-<section>
+<!-- <section>
     <aside id="leftsidebar" class="sidebar">
         <sidebar-nav></sidebar-nav>
     </aside>
-</section>
+</section> -->
 
 <section class="content">
     <div class="">

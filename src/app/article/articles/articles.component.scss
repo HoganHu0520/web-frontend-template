@@ -1,0 +1,31 @@
+.mat-sidenav-container {
+    min-height: calc(100vh - 64px);
+}
+
+.mat-sidenav {
+    min-width: 250px;
+    padding-top: 50px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    list-style: none;
+    height: 35px;
+    padding: 0 20px;
+
+    a {
+        color: #333;
+        text-decoration: none;
+        outline: none;
+    }
+
+    &:hover {
+        background-color: #dbdbdb;
+        a {
+            color: #ff5722;
+            text-shadow: 0 0 5px #fff;
+        }
+    }
+}

@@ -1,1 +1,5 @@
 @import 'theme';
+
+button.mat-icon-button:focus {
+    outline: none;
+}
