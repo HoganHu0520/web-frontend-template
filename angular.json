@@ -24,9 +24,15 @@
               "node_modules/bootstrap/scss/bootstrap-reboot.scss",
               "node_modules/bootstrap/scss/bootstrap-grid.scss",
               "node_modules/material-design-icons/iconfont/material-icons.css",
+              "node_modules/prismjs/themes/prism-okaidia.css",
               "src/shared/styles/global.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-typescript.js",
+              "node_modules/prismjs/components/prism-diff.js",
+              "node_modules/prismjs/components/prism-bash.js"
+            ]
           },
           "configurations": {
             "production": {

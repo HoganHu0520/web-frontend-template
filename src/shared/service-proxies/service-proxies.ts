@@ -18,6 +18,7 @@ import 'rxjs-compat/add/observable/of';
 import { Observable } from 'rxjs/Observable';
 import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse, HttpResponseBase, HttpErrorResponse } from '@angular/common/http';
+import * as _ from 'lodash';
 
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
@@ -26,6 +27,14 @@ export class Client {
     private http: HttpClient;
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    private ARTICLES = [
+        new ArticleModel({
+            id: 1,
+            title: 'test',
+            mdFile: '/assets/mds/test.md',
+        })
+    ];
 
     constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -88,13 +97,11 @@ export class Client {
     }
 
     articleList(): Observable<ArticleModel[]> {
-        return Observable.fromPromise(Promise.resolve([
-            new ArticleModel({
-                id: 1,
-                title: 'test',
-                mdFile: '/assets/mds/test.md',
-            })
-        ]));
+        return Observable.fromPromise(Promise.resolve(this.ARTICLES));
+    }
+
+    article(id: number): Observable<ArticleModel> {
+        return Observable.fromPromise(Promise.resolve(_.find(this.ARTICLES, { id })));
     }
 }
 

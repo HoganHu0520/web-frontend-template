@@ -2,6 +2,7 @@
 import { RouterModule } from '@angular/router';
 
 import { ArticlesComponent } from './articles/articles.component';
+import { ArticleDetailComponent } from '@app/article/article-detail/article-detail.component';
 
 @NgModule({
     imports: [
@@ -11,7 +12,11 @@ import { ArticlesComponent } from './articles/articles.component';
                 component: ArticlesComponent,
                 children: [
                 ]
-            }
+            },
+            {
+                path: ':id',
+                component: ArticleDetailComponent,
+            },
         ])
     ],
     exports: [
