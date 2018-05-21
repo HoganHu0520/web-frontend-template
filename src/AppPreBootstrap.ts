@@ -1,11 +1,8 @@
 import * as moment from 'moment';
 import { AppConsts } from '@shared/AppConsts';
-import * as HttpClientInjector from '@shared/utils/HttpClientInjector';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Type, CompilerOptions, NgModuleRef, ReflectiveInjector } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-const http: HttpClient = HttpClientInjector.getHttpClient();
 
 export class AppPreBootstrap {
 
@@ -20,12 +17,16 @@ export class AppPreBootstrap {
   }
 
   private static getApplicationConfig(callback: () => void) {
-    http.get('/assets/appconfig.json').subscribe((data: any) => {
-      AppConsts.appBaseUrl = data.appBaseUrl;
-      AppConsts.remoteServiceBaseUrl = data.remoteServiceBaseUrl;
+    fetch('/assets/appconfig.json')
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        AppConsts.appBaseUrl = data.appBaseUrl;
+        AppConsts.remoteServiceBaseUrl = data.remoteServiceBaseUrl;
 
-      callback();
-    });
+        callback();
+      });
 
     let options : any = {
       headers: new HttpHeaders({
