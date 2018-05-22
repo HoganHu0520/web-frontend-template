@@ -46,9 +46,15 @@
     color: #fff;
     cursor: pointer;    
 
-    &:hover .bottom-part .article-info {
-        height: 36px;
-        padding-top: 4px;
+    &:hover {
+        .bottom-part .article-info {
+            height: 36px;
+            padding-top: 4px;
+        }
+
+        .title {
+            background-color: transparentize($color: #000, $amount: 0.3);
+        }
     }
 
     img {
@@ -58,6 +64,7 @@
 
     .title {
         position: absolute;
+        transition: all 0.3s ease-out;
         top: 0;
         left: 0;
         width: 100%;
