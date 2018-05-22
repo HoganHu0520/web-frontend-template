@@ -28,14 +28,6 @@ export class Client {
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
-    private ARTICLES = [
-        new ArticleModel({
-            id: 1,
-            title: 'test',
-            mdFile: '/assets/mds/test.md',
-        })
-    ];
-
     constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
         this.baseUrl = baseUrl ? baseUrl : "/";
@@ -97,11 +89,93 @@ export class Client {
     }
 
     articleList(): Observable<ArticleModel[]> {
-        return Observable.fromPromise(Promise.resolve(this.ARTICLES));
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", "/assets/mds/articles.json", options_).flatMap((response_ : any) => {
+            return this.processArticleList(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processArticleList(<any>response_);
+                } catch (e) {
+                    return <Observable<ArticleModel[]>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<ArticleModel[]>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processArticleList(response: HttpResponseBase): Observable<ArticleModel[]> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : <ArticleModel[]>JSON.parse(_responseText, this.jsonParseReviver);
+            return Observable.of(result200);
+            });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Observable.of<ArticleModel[]>(<any>null);
     }
 
     article(id: number): Observable<ArticleModel> {
-        return Observable.fromPromise(Promise.resolve(_.find(this.ARTICLES, { id })));
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", "/assets/mds/articles.json", options_).flatMap((response_ : any) => {
+            return this.processArticle(response_, id);
+        }).catch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processArticle(<any>response_, id);
+                } catch (e) {
+                    return <Observable<ArticleModel>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<ArticleModel>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processArticle(response: HttpResponseBase, id: number): Observable<ArticleModel> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : <ArticleModel>_.find(JSON.parse(_responseText, this.jsonParseReviver), {id});
+            return Observable.of(result200);
+            });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Observable.of<ArticleModel>(<any>null);
     }
 }
 
@@ -153,6 +227,10 @@ export class ArticleModel implements IArticleModel {
     title?: string | undefined;
     mdFile?: string | undefined;
     id?: number | undefined;
+    image?: string | undefined;
+    description?: string | undefined;
+    author?: string | undefined;
+    createTime?: string | undefined;
 
     constructor(data?: IArticleModel) {
         if (data) {
@@ -168,6 +246,10 @@ export class ArticleModel implements IArticleModel {
             this.title = data["title"];
             this.mdFile = data["mdFile"];
             this.id = data["id"];
+            this.image = data["image"];
+            this.description = data["description"];
+            this.author = data["author"];
+            this.createTime = data["createTime"];
         }
     }
 
@@ -183,6 +265,10 @@ export class ArticleModel implements IArticleModel {
         data["title"] = this.title;
         data["mdFile"] = this.mdFile;
         data["id"] = this.id;
+        data["image"] = this.image;
+        data["description"] = this.description;
+        data["author"] = this.author;
+        data["createTime"] = this.createTime;
         return data; 
     }
 }

@@ -29,7 +29,7 @@
     "lodash": "^4.17.10",
     "material-design-icons": "^3.0.1",
     "moment": "^2.22.1",
-    "ngx-bootstrap": "^2.0.4",
+    "ngx-bootstrap": "^2.0.5",
     "ngx-cookie": "^3.0.1",
     "ngx-markdown": "^1.6.0",
     "ngx-swiper-wrapper": "^5.3.8",

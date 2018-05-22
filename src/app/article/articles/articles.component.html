@@ -1,15 +1,33 @@
 <mat-sidenav-container [hasBackdrop]="'false'">
-  <mat-sidenav [mode]="'push'" [(opened)]="openedSidenav">
+  <!-- <mat-sidenav [mode]="'push'" [(opened)]="openedSidenav">
     <li class="nav-item" *ngFor="let article of articleService.articles">
-      <a [routerLink]="['/app/article', article.id]" >{{article.title}}</a>      
+      <a [routerLink]="['/app/article', article.id]">{{article.title}}</a>
     </li>
-  </mat-sidenav>
+  </mat-sidenav> -->
 
   <mat-sidenav-content [ngClass]="{'hide-sidenav': !openedSidenav}">
-    <div class="content-header">
+    <!-- <div class="content-header">
       <button mat-icon-button (click)="toggleSidenav()">
         <mat-icon aria-label="menu">menu</mat-icon>
       </button>
+    </div> -->
+
+    <div class="content-body">
+      <mat-grid-list cols="3" [gutterSize]="'8px'">
+        <mat-grid-tile *ngFor="let article of articleService.articles">
+          <div [routerLink]="['/app/article', article.id]" class="article-item">
+            <div class="title">{{article.title}}</div>
+            <img [src]="article.image">
+            <div class="bottom-part">
+              <div class="description">{{article.description}}</div>
+              <div class="article-info">
+                <span class="info-item"><mat-icon>&#xe7fd;</mat-icon><span>{{article.author}}</span></span>
+                <span class="info-item"><mat-icon>&#xe916;</mat-icon><span>{{article.createTime}}</span></span>
+              </div>
+            </div>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

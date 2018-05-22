@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatSidenavModule, MatButtonModule, MatIconModule } from '@angular/material';
+import { MatSidenavModule, MatButtonModule, MatIconModule, MatCardModule, MatGridListModule } from '@angular/material';
 import { MarkdownModule } from 'ngx-markdown';
-import 'prismjs/prism';
-import 'prismjs/components/prism-typescript.js';
-import 'prismjs/components/prism-diff.js';
-import 'prismjs/components/prism-bash.js';
 
 import { ArticlesComponent } from './articles/articles.component';
 import { ArticleRoutingModule } from './article-routing.module';
@@ -15,6 +11,8 @@ const MatModules = [
   MatSidenavModule,
   MatButtonModule,
   MatIconModule,
+  MatCardModule,
+  MatGridListModule,
 ];
 
 @NgModule({

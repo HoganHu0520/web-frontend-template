@@ -11,7 +11,7 @@ import { ArticlesService } from './articles.service';
 })
 export class ArticlesComponent implements OnInit {
 
-  openedSidenav: boolean = true;
+  openedSidenav: boolean = false;
 
   constructor(public articleService: ArticlesService) { }
 
