@@ -1,7 +1,54 @@
+$gray-color: #999;
+$black-color: #000;
+
 .content {
     padding: 20px 0;
 
-    .title {
-        font-size: 48px;
+    .header {    
+        padding-bottom: 20px;
+        border-bottom: 1px dashed $gray-color;
+
+        .title {
+            font-size: 48px;
+        }
+    
+        .article-info {
+            text-align: right;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+    
+            .info-item {
+                margin-left: 10px;
+                color: $gray-color;
+                
+                &:hover {
+                    color: $black-color;
+                }
+    
+                &:not(:last-child)::after {
+                    color: $gray-color;
+                    content: '/';
+                    margin: 0 10px 0 20px;
+                }
+                
+                &:first-child {
+                    margin-left: 0;
+                }
+    
+                & > * {
+                    vertical-align: middle;
+                    display: inline-block;
+                }
+    
+                .mat-icon {
+                    margin-right: 4px;
+                }
+            }
+        }
+    }
+
+    .body {
+        padding-top: 10px;
     }
 }

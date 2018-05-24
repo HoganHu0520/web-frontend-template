@@ -1,4 +1,19 @@
 <div class="content container">
-  <h1 class="title">{{articleDetailService.article.title}}</h1>
-  <div markdown [src]="articleDetailService.article.mdFile"></div>
+  <div class="header">
+    <h1 class="title">{{articleDetailService.article.title}}</h1>
+    <div class="article-info">
+      <span class="info-item">
+        <mat-icon>&#xe7fd;</mat-icon>
+        <span>{{articleDetailService.article.author}}</span>
+      </span>
+      <span class="info-item">
+        <mat-icon>&#xe916;</mat-icon>
+        <span>{{articleDetailService.article.createTime}}</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="body">
+    <div markdown [src]="articleDetailService.article.mdFile"></div>    
+  </div>
 </div>
