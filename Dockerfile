@@ -1,5 +1,8 @@
 FROM nginx
 
+RUN npm install
+RUN npm build
+RUN mkdir /var/www
 RUN mkdir /var/www/html
 COPY dist/ /var/www/html
 
