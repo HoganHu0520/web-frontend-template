@@ -12,22 +12,29 @@
       </button>
     </div> -->
 
-    <div class="content-body">
-      <mat-grid-list cols="3" [gutterSize]="'8px'">
-        <mat-grid-tile *ngFor="let article of articleService.articles">
+    <div class="content-body container-fluid">
+      <div class="row">
+        <div #colItem (window:resize)="0" class="col-lg-4 col-sm-6 col-12 col-item" *ngFor="let article of articleService.articles"
+          [ngStyle]="{'height.px': colItem.offsetWidth - 30}">
           <div [routerLink]="['/app/article', article.id]" class="article-item">
             <div class="title">{{article.title}}</div>
             <img [src]="article.image">
             <div class="bottom-part">
               <div class="description">{{article.description}}</div>
               <div class="article-info">
-                <span class="info-item"><mat-icon>&#xe7fd;</mat-icon><span>{{article.author}}</span></span>
-                <span class="info-item"><mat-icon>&#xe916;</mat-icon><span>{{article.createTime}}</span></span>
+                <span class="info-item">
+                  <mat-icon>&#xe7fd;</mat-icon>
+                  <span>{{article.author}}</span>
+                </span>
+                <span class="info-item">
+                  <mat-icon>&#xe916;</mat-icon>
+                  <span>{{article.createTime}}</span>
+                </span>
               </div>
             </div>
           </div>
-        </mat-grid-tile>
-      </mat-grid-list>
+        </div>
+      </div>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

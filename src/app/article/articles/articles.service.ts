@@ -22,7 +22,6 @@ export class ArticlesService {
                 finallyCallback;
             })
             .subscribe((result: ArticleModel[]) => {
-                console.log(result);
                 this.articles = result;
             });
     }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatSidenavModule, MatButtonModule, MatIconModule, MatCardModule, MatGridListModule } from '@angular/material';
+import { MatSidenavModule, MatButtonModule, MatIconModule, MatCardModule } from '@angular/material';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { ArticlesComponent } from './articles/articles.component';
@@ -12,7 +12,6 @@ const MatModules = [
   MatButtonModule,
   MatIconModule,
   MatCardModule,
-  MatGridListModule,
 ];
 
 @NgModule({
